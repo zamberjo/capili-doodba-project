@@ -1,0 +1,31 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: ccd40dd
+_src_path: gh:zamberjo/doodba-copier-template
+backup_dst: ""
+cidr_whitelist: null
+domains_prod:
+  - hosts:
+      - capili.lapanacea.es
+domains_test:
+  - hosts:
+      - testcapili.lapanacea.es
+gitlab_url: https://github.com/zamberjo/capili-doodba-project
+odoo_dbfilter: ^capili
+odoo_initial_lang: es_ES
+odoo_listdb: false
+odoo_oci_image: ghcr.io/zamberjo/capili-odoo
+odoo_proxy: traefik
+odoo_version: 14.0
+paths_without_crawlers:
+  - /web
+  - /website/info
+postgres_dbname: capili
+postgres_exposed: false
+postgres_username: odoo
+postgres_version: "15"
+project_author: Jose Zambudio Bernabeu
+project_license: no_license
+project_name: capili
+smtp_default_from: zamberjo@gmail.com
+smtp_relay_host: ""
+traefik_version: 2
