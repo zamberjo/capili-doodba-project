@@ -19,7 +19,7 @@ services:
       - db
     networks:
       default:
-      inverseproxy_shared:
+      proxy-network:
     labels:
       doodba.domain.main: "capili.lapanacea.es"
       traefik.enable: "true"
@@ -100,7 +100,7 @@ networks:
     driver_opts:
       encrypted: 1
 
-  inverseproxy_shared:
+  proxy-network:
     external: true
 
 volumes:
