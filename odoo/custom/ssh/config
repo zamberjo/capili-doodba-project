@@ -1,1 +1,5 @@
 # See syntax in https://www.ssh.com/ssh/config/ and `man ssh_config`
+Host github.com
+    HostName github.com
+    IdentityFile ~/.ssh/id_rsa
+    StrictHostKeyChecking accept-new
