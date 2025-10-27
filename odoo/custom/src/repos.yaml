@@ -42,6 +42,15 @@ OpenUpgrade:
     origin: https://github.com/OCA/OpenUpgrade.git
   target: origin $ODOO_VERSION
 
+server-brand:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  merges:
+    - origin $ODOO_VERSION
+  remotes:
+    origin: https://github.com/OCA/server-brand.git
+  target: origin $ODOO_VERSION
+
 capili:
   defaults:
     depth: $DEPTH_DEFAULT
