@@ -33,6 +33,15 @@ server-tools:
   merges:
     - origin $ODOO_VERSION
 
+OpenUpgrade:
+  defaults:
+    depth: $DEPTH_DEFAULT
+  merges:
+    - origin $ODOO_VERSION
+  remotes:
+    origin: https://github.com/OCA/OpenUpgrade.git
+  target: origin $ODOO_VERSION
+
 capili:
   defaults:
     depth: $DEPTH_DEFAULT
