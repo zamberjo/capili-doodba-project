@@ -1,7 +1,6 @@
 # See https://github.com/Tecnativa/doodba#optodoocustomsrcaddonsyaml
 
 web:
-  - web_decimal_numpad_dot
   - web_pwa_oca
   - web_responsive
 
