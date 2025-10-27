@@ -25,7 +25,7 @@ paths_without_crawlers:
 postgres_dbname: capili
 postgres_exposed: false
 postgres_username: odoo
-postgres_version: "15"
+postgres_version: "17"
 project_author: Jose Zambudio Bernabeu
 project_license: no_license
 project_name: capili
