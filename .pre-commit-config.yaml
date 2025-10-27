@@ -74,7 +74,7 @@ repos:
       - id: mixed-line-ending
         args: ["--fix=lf"]
   - repo: https://github.com/OCA/pylint-odoo
-    rev: v8.0.0
+    rev: v8.0.20
     hooks:
       - id: pylint_odoo
         name: pylint with optional checks
@@ -104,5 +104,5 @@ repos:
           - --convert-fragments-to-markdown
           - --gen-html
           - --if-fragments-changed
-          - --branch=15.0
+          - --branch=16.0
           - --template-filename=.module-readme.rst.j2
