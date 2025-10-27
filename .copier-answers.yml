@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: ccd40dd
+_commit: v9.0.3.2
 _src_path: gh:zamberjo/doodba-copier-template
 backup_dst: ""
 cidr_whitelist: null
@@ -13,9 +13,12 @@ gitlab_url: https://github.com/zamberjo/capili-doodba-project
 odoo_dbfilter: ^capili
 odoo_initial_lang: es_ES
 odoo_listdb: false
+odoo_listdb_staging: false
 odoo_oci_image: ghcr.io/zamberjo/capili-odoo
 odoo_proxy: traefik
 odoo_version: 14.0
+paths_with_crawlers:
+  - /web/image/website
 paths_without_crawlers:
   - /web
   - /website/info

@@ -14,6 +14,7 @@ services:
       DB_FILTER: "^capili"
       DOODBA_ENVIRONMENT: "${DOODBA_ENVIRONMENT-prod}"
       INITIAL_LANG: "es_ES"
+      LIST_DB: "false"
       PGHOST: capili-14-0-prod-db
     depends_on:
       - db
@@ -45,11 +46,13 @@ services:
       traefik.http.routers.capili-14-0-prod-main-0.middlewares:
         capili-14-0-prod-addSTS, capili-14-0-prod-buffering, capili-14-0-prod-compress,
         capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-main-0.priority: 1
       traefik.http.routers.capili-14-0-prod-main-secure-0.rule: Host(`capili.lapanacea.es`)
       traefik.http.routers.capili-14-0-prod-main-secure-0.service: capili-14-0-prod-main
       traefik.http.routers.capili-14-0-prod-main-secure-0.middlewares:
         capili-14-0-prod-addSTS, capili-14-0-prod-buffering, capili-14-0-prod-compress,
         capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-main-secure-0.priority: 1
       traefik.http.routers.capili-14-0-prod-main-secure-0.tls: "true"
       traefik.http.routers.capili-14-0-prod-main-secure-0.tls.certResolver: letsencrypt
       traefik.http.routers.capili-14-0-prod-longpolling-0.rule:
@@ -57,11 +60,13 @@ services:
       traefik.http.routers.capili-14-0-prod-longpolling-0.service: capili-14-0-prod-longpolling
       traefik.http.routers.capili-14-0-prod-longpolling-0.middlewares:
         capili-14-0-prod-addSTS, capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-longpolling-0.priority: 20
       traefik.http.routers.capili-14-0-prod-longpolling-secure-0.rule:
         Host(`capili.lapanacea.es`) && PathPrefix(`/longpolling/`)
       traefik.http.routers.capili-14-0-prod-longpolling-secure-0.service: capili-14-0-prod-longpolling
       traefik.http.routers.capili-14-0-prod-longpolling-secure-0.middlewares:
         capili-14-0-prod-addSTS, capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-longpolling-secure-0.priority: 20
       traefik.http.routers.capili-14-0-prod-longpolling-secure-0.tls: "true"
       traefik.http.routers.capili-14-0-prod-longpolling-secure-0.tls.certResolver: letsencrypt
       traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-0.rule:
@@ -71,6 +76,7 @@ services:
       traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-0.middlewares:
         capili-14-0-prod-addSTS, capili-14-0-prod-buffering, capili-14-0-prod-compress,
         capili-14-0-prod-forbid-crawlers, capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-0.priority: 10
       traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-secure-0.rule:
         Host(`capili.lapanacea.es`) && (PathPrefix(`/web/`, `/website/info/`) ||
         Path(`/web`, `/website/info`))
@@ -78,8 +84,27 @@ services:
       traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-secure-0.middlewares:
         capili-14-0-prod-addSTS, capili-14-0-prod-buffering, capili-14-0-prod-compress,
         capili-14-0-prod-forbid-crawlers, capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-secure-0.priority: 10
       traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-secure-0.tls: "true"
       traefik.http.routers.capili-14-0-prod-forbiddenCrawlers-secure-0.tls.certResolver: letsencrypt
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-0.rule:
+        Host(`capili.lapanacea.es`) && (PathPrefix(`/web/image/website/`) ||
+        Path(`/web/image/website`))
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-0.service: capili-14-0-prod-main
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-0.middlewares:
+        capili-14-0-prod-addSTS, capili-14-0-prod-buffering, capili-14-0-prod-compress,
+        capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-0.priority: 100
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-secure-0.rule:
+        Host(`capili.lapanacea.es`) && (PathPrefix(`/web/image/website/`) ||
+        Path(`/web/image/website`))
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-secure-0.service: capili-14-0-prod-main
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-secure-0.middlewares:
+        capili-14-0-prod-addSTS, capili-14-0-prod-buffering, capili-14-0-prod-compress,
+        capili-14-0-prod-forceSecure
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-secure-0.priority: 100
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-secure-0.tls: "true"
+      traefik.http.routers.capili-14-0-prod-allowedCrawlers-secure-0.tls.certResolver: letsencrypt
 
   db:
     extends:

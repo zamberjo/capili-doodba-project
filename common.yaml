@@ -15,7 +15,6 @@ services:
       PGDATABASE: &dbname capili
       PGUSER: &dbuser "odoo"
       PROXY_MODE: "true"
-      LIST_DB: "false"
     tty: true
     volumes:
       - filestore:/var/lib/odoo:z

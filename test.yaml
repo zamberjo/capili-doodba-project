@@ -10,6 +10,7 @@ services:
       - .docker/db-access.env
     environment:
       DOODBA_ENVIRONMENT: "${DOODBA_ENVIRONMENT-test}"
+      LIST_DB: "false"
       # To install demo data export DOODBA_WITHOUT_DEMO=false
       WITHOUT_DEMO: "${DOODBA_WITHOUT_DEMO-all}"
       SMTP_PORT: "1025"
@@ -42,11 +43,13 @@ services:
       traefik.http.routers.capili-14-0-test-longpolling-0.service: capili-14-0-test-longpolling
       traefik.http.routers.capili-14-0-test-longpolling-0.middlewares:
         capili-14-0-test-addSTS, capili-14-0-test-forceSecure
+      traefik.http.routers.capili-14-0-test-longpolling-0.priority: 20
       traefik.http.routers.capili-14-0-test-longpolling-secure-0.rule:
         Host(`testcapili.lapanacea.es`) && PathPrefix(`/longpolling/`)
       traefik.http.routers.capili-14-0-test-longpolling-secure-0.service: capili-14-0-test-longpolling
       traefik.http.routers.capili-14-0-test-longpolling-secure-0.middlewares:
         capili-14-0-test-addSTS, capili-14-0-test-forceSecure
+      traefik.http.routers.capili-14-0-test-longpolling-secure-0.priority: 20
       traefik.http.routers.capili-14-0-test-longpolling-secure-0.tls: "true"
       traefik.http.routers.capili-14-0-test-longpolling-secure-0.tls.certResolver: letsencrypt
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-0.rule:
@@ -55,12 +58,14 @@ services:
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-0.middlewares:
         capili-14-0-test-addSTS, capili-14-0-test-buffering, capili-14-0-test-compress,
         capili-14-0-test-forbid-crawlers, capili-14-0-test-forceSecure
+      traefik.http.routers.capili-14-0-test-forbiddenCrawlers-0.priority: 10
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-secure-0.rule:
         Host(`testcapili.lapanacea.es`) && (PathPrefix(`/`))
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-secure-0.service: capili-14-0-test-main
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-secure-0.middlewares:
         capili-14-0-test-addSTS, capili-14-0-test-buffering, capili-14-0-test-compress,
         capili-14-0-test-forbid-crawlers, capili-14-0-test-forceSecure
+      traefik.http.routers.capili-14-0-test-forbiddenCrawlers-secure-0.priority: 10
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-secure-0.tls: "true"
       traefik.http.routers.capili-14-0-test-forbiddenCrawlers-secure-0.tls.certResolver: letsencrypt
     command:

@@ -59,11 +59,10 @@ services:
       - wdb
     command:
       - odoo
-      - --limit-memory-soft=0
-      - --limit-time-real-cron=9999999
-      - --limit-time-real=9999999
-      - --workers=0
-      - --dev=reload,qweb,werkzeug,xml
+      - --update=all
+      - --stop-after-init
+      - --load=base,web,openupgrade_framework
+      - --upgrade-path=/opt/odoo/custom/src/OpenUpgrade/openupgrade_scripts/scripts
 
   db:
     extends:
