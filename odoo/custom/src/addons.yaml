@@ -6,7 +6,6 @@ web:
   - web_dialog_size
   - web_no_bubble
   - web_responsive
-  - web_sheet_full_width
   - web_tree_many2one_clickable
 
 server-tools:
