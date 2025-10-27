@@ -16,7 +16,7 @@ odoo_listdb: false
 odoo_listdb_staging: false
 odoo_oci_image: ghcr.io/zamberjo/capili-odoo
 odoo_proxy: traefik
-odoo_version: 14.0
+odoo_version: 15.0
 paths_with_crawlers:
   - /web/image/website
 paths_without_crawlers:
