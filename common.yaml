@@ -11,7 +11,7 @@ services:
         UID: "${UID:-1000}"
         GID: "${GID:-1000}"
     environment:
-      EMAIL_FROM: "zamberjo@gmail.com"
+      EMAIL_FROM: "aypollitocomolahasliado@gmail.com"
       PGDATABASE: &dbname capili
       PGUSER: &dbuser "odoo"
       PROXY_MODE: "true"
@@ -38,6 +38,34 @@ services:
   smtpfake:
     image: docker.io/mailhog/mailhog
 
+  smtpreal:
+    image: ghcr.io/docker-mailserver/docker-mailserver:13
+    hostname: "smtp.gmail.com"
+    stop_grace_period: 1m
+    volumes:
+      - mailconfig:/tmp/docker-mailserver:z
+      - maildata:/var/mail:z
+      - maillogs:/var/log/mail:z
+      - maillogssupervisord:/var/log/supervisor:z
+      - mailstate:/var/mail-state:z
+    cap_add:
+      - SYS_PTRACE
+    environment:
+      DEFAULT_RELAY_HOST: "[smtp.gmail.com]:587"
+      LOG_LEVEL: info
+      ENABLE_SRS: 1
+      ONE_DIR: 1
+      PERMIT_DOCKER: connected-networks
+      POSTFIX_INET_PROTOCOLS: ipv4
+      POSTFIX_MESSAGE_SIZE_LIMIT: 52428800 # 50 MiB
+      RELAY_HOST: "smtp.gmail.com"
+      RELAY_PORT: "587"
+      RELAY_USER: "aypollitocomolahasliado@gmail.com"
+      SMTP_ONLY: 1
+      SRS_DOMAINNAME: "gmail.com"
+      SRS_EXCLUDE_DOMAINS: "gmail.com"
+      SRS_SENDER_CLASSES: envelope_sender,header_sender
+
   backup:
     image: ghcr.io/tecnativa/docker-duplicity-postgres:latest
     hostname: backup.capili.lapanacea.es
@@ -46,12 +74,15 @@ services:
       DB_VERSION: "17"
       DBS_TO_INCLUDE: "^capili"
       DST: "file:///var/backup"
+      EMAIL_FROM: "aypollitocomolahasliado@gmail.com"
+      EMAIL_TO: "zamberjo@gmail.com"
       JOB_500_WHAT: dup full $$SRC $$DST
       JOB_500_WHEN: weekly
       JOB_800_WHAT: dup --force remove-older-than 3M $$DST
       JOB_800_WHEN: weekly
       PGDATABASE: *dbname
       PGUSER: *dbuser
+      SMTP_HOST: smtplocal
       TZ: "Europe/Madrid"
     volumes:
       - backup_cache:/root:z

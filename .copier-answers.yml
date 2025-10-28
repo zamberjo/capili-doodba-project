@@ -2,8 +2,8 @@
 _commit: v9.0.3.3
 _src_path: gh:zamberjo/doodba-copier-template
 backup_deletion: true
-backup_dst: /var/backup
-backup_email_from: zamberjo@gmail.com
+backup_dst: file:///var/backup
+backup_email_from: aypollitocomolahasliado@gmail.com
 backup_email_to: zamberjo@gmail.com
 backup_image_version: latest
 backup_tz: Europe/Madrid
@@ -34,6 +34,11 @@ postgres_version: "17"
 project_author: Jose Zambudio Bernabeu
 project_license: no_license
 project_name: capili
-smtp_default_from: zamberjo@gmail.com
-smtp_relay_host: ""
+smtp_canonical_default: gmail.com
+smtp_canonical_domains: []
+smtp_default_from: aypollitocomolahasliado@gmail.com
+smtp_relay_host: smtp.gmail.com
+smtp_relay_port: 587
+smtp_relay_user: aypollitocomolahasliado@gmail.com
+smtp_relay_version: "13"
 traefik_version: 2
