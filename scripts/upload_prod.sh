@@ -47,7 +47,7 @@ echo "Restoring database in production..."
 ssh $HOST << 'EOF'
 cd /Users/jose/Projects/capili-doodba-project
 docker compose -p capili -f prod.yaml cp /tmp/capili.backup.zip odoo:/tmp/capili.backup.zip
-docker compose -p capili -f prod.yaml exec --user root odoo click-odoo-restoredb -c auto/odoo.conf --force capili /tmp/capili.backup.zip
+docker compose -p capili -f prod.yaml exec odoo click-odoo-restoredb -c auto/odoo.conf --force capili /tmp/capili.backup.zip
 docker compose -p capili -f prod.yaml exec --user root odoo rm /tmp/capili.backup.zip
 rm /tmp/capili.backup.zip
 EOF
