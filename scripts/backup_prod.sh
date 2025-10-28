@@ -24,4 +24,4 @@ ssh "$HOST" "rm /tmp/$BACKUP_FILE"
 docker cp "/tmp/$BACKUP_FILE" "$LOCAL_CONTAINER:/tmp/$BACKUP_FILE"
 
 # Restore database in local container
-docker exec -it "$LOCAL_CONTAINER" click-odoo-restoredb -c auto/odoo.conf --force devel "/tmp/$BACKUP_FILE"
+docker exec -it "$LOCAL_CONTAINER" click-odoo-restoredb --neutralize -c auto/odoo.conf --force devel "/tmp/$BACKUP_FILE"
