@@ -37,3 +37,23 @@ services:
 
   smtpfake:
     image: docker.io/mailhog/mailhog
+
+  backup:
+    image: ghcr.io/tecnativa/docker-duplicity-postgres:latest
+    hostname: backup.capili.lapanacea.es
+    init: true
+    environment:
+      DB_VERSION: "17"
+      DBS_TO_INCLUDE: "^capili"
+      DST: "file:///var/backup"
+      JOB_500_WHAT: dup full $$SRC $$DST
+      JOB_500_WHEN: weekly
+      JOB_800_WHAT: dup --force remove-older-than 3M $$DST
+      JOB_800_WHEN: weekly
+      PGDATABASE: *dbname
+      PGUSER: *dbuser
+      TZ: "Europe/Madrid"
+    volumes:
+      - backup_cache:/root:z
+      - filestore:/mnt/backup/src/odoo:z
+      - ./backups:/var/backup

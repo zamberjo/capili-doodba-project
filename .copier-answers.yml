@@ -1,7 +1,12 @@
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
 _commit: v9.0.3.2
 _src_path: gh:zamberjo/doodba-copier-template
-backup_dst: ""
+backup_deletion: true
+backup_dst: /var/backup
+backup_email_from: zamberjo@gmail.com
+backup_email_to: zamberjo@gmail.com
+backup_image_version: latest
+backup_tz: Europe/Madrid
 cidr_whitelist: null
 domains_prod:
   - hosts:

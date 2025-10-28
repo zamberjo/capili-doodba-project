@@ -124,6 +124,17 @@ services:
         aliases:
           - "capili-18-0-prod-db"
 
+  backup:
+    extends:
+      file: common.yaml
+      service: backup
+    env_file:
+      - .docker/backup.env
+      - .docker/db-access.env
+    restart: unless-stopped
+    depends_on:
+      - db
+
 networks:
   default:
     driver_opts:
@@ -133,5 +144,6 @@ networks:
     external: true
 
 volumes:
+  backup_cache:
   filestore:
   db:
