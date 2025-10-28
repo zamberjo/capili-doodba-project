@@ -20,7 +20,7 @@ services:
       - filestore:/var/lib/odoo:z
     labels:
       traefik.backend.buffering.retryExpression: IsNetworkError() && Attempts() < 5
-      traefik.docker.network: "inverseproxy_shared"
+      traefik.docker.network: "proxy-network"
       traefik.frontend.passHostHeader: "true"
       traefik.port: "8069"
 
